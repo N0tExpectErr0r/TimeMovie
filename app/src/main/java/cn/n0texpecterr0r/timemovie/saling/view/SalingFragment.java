@@ -7,12 +7,16 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.n0texpecterr0r.timemovie.R;
+import cn.n0texpecterr0r.timemovie.base.bus.EventBuser;
 import cn.n0texpecterr0r.timemovie.base.component.fragment.TimeMvpFragment;
 import cn.n0texpecterr0r.timemovie.base.component.mvp.BaseContract;
+import cn.n0texpecterr0r.timemovie.event.LocationChangeEvent;
 import cn.n0texpecterr0r.timemovie.location.bean.Location;
 import cn.n0texpecterr0r.timemovie.location.manager.LocationManager;
 import cn.n0texpecterr0r.timemovie.saling.SalingContract;
@@ -35,6 +39,8 @@ public class SalingFragment extends TimeMvpFragment<SalingPresenter> implements 
 
     @Override
     protected void init(SalingPresenter presenter, Bundle saveInstanceState) {
+        EventBuser.register(this);
+
         mRvList = (RecyclerView) findViewById(R.id.saling_rv_list);
         mSrlRefresh = (SwipeRefreshLayout) findViewById(R.id.saling_srl_refresh);
 
@@ -48,6 +54,12 @@ public class SalingFragment extends TimeMvpFragment<SalingPresenter> implements 
         mSrlRefresh.setRefreshing(true);
 
         mSrlRefresh.setOnRefreshListener(()->presenter.fetchSalingMovies(mLocation.getId().intValue()));
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBuser.unregister(this);
     }
 
     @Override
@@ -69,5 +81,12 @@ public class SalingFragment extends TimeMvpFragment<SalingPresenter> implements 
     @Override
     public void onLoadError() {
         showToast("网络出现错误，请检查网络设置");
+    }
+
+    @Subscribe
+    public void onLocationChanged(LocationChangeEvent event){
+        mLocation = LocationManager.getInstance().getLocation();
+        getPresenter().fetchSalingMovies(mLocation.getId().intValue());
+        mSrlRefresh.setRefreshing(true);
     }
 }

@@ -49,7 +49,10 @@ public class SalingAdapter extends BaseAdapter<SalingMovie> {
         }
 
         holder.setText(R.id.saling_tv_name, movie.getNameCn());
-        holder.setText(R.id.saling_tv_score, "评分："+ movie.getScore());
+        if (movie.getScore()>0)
+            holder.setText(R.id.saling_tv_score, "评分："+ movie.getScore());
+        else
+            holder.setText(R.id.saling_tv_score, "评分：暂无");
         holder.setText(R.id.saling_tv_director, "导演："+ movie.getDirector());
         holder.setText(R.id.saling_tv_actors, "主演："+movie.getActors());
 

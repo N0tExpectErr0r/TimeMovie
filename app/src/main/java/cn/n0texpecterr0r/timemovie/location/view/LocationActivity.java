@@ -153,7 +153,7 @@ public class LocationActivity extends TimeMvpActivity<LocationPresenter>
         Location loc = mAdapter.getData(position);
         new AlertDialog.Builder(this)
                 .setTitle("选择城市")
-                .setMessage("确定切换城市到"+loc.getName()+"?")
+                .setMessage("确定切换城市到 "+loc.getName()+" ?")
                 .setPositiveButton("确定", (di, i)->{
                     LocationManager.getInstance().saveLocation(loc);
                     // 前往主界面

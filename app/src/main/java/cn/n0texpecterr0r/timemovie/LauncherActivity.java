@@ -28,7 +28,7 @@ public class LauncherActivity extends TimeBaseActivity {
     protected void init(Bundle savedInstanceState) {
         mTvSkip = findViewById(R.id.launcher_tv_skip);
 
-        mTimer = new Timer().startTimer(2000, this::navigateActivity);
+        mTimer = new Timer().startTimer(10000, this::navigateActivity);
 
         mTvSkip.setOnClickListener((view)->{
             mTimer.cancelAll();
