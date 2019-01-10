@@ -57,7 +57,7 @@ public class SideBar extends View {
             mPaint.setAntiAlias(true);
             mPaint.setTextSize(dpToPx(14));
             if (i == mCurrentIndex) {
-                mPaint.setColor(getResources().getColor(R.color.colorPrimaryDark));
+                mPaint.setColor(getResources().getColor(R.color.colorPrimary));
                 mPaint.setFakeBoldText(true);
             }
             float x = width / 2 - mPaint.measureText(letters[i]) / 2;

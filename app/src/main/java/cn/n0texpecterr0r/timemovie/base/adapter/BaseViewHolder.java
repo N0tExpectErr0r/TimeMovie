@@ -2,6 +2,7 @@ package cn.n0texpecterr0r.timemovie.base.adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.opengl.Visibility;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
@@ -25,32 +26,39 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         mViews = new SparseArray<>();
     }
 
-    //通过viewId获取View
+    // 通过viewId获取View
     public <T extends View> T getView(int viewId) {
         View view = mViews.get(viewId);
         if (view == null) {
-            //如果这个控件没有放入过，放入。
+            // 如果这个控件没有放入过，放入。
             view = mItemView.findViewById(viewId);
             mViews.put(viewId, view);
         }
         return (T) view;
     }
 
-    //设置TextView的值
+    // 设置TextView的值
     public BaseViewHolder setText(int viewId, CharSequence text) {
         TextView textView = getView(viewId);
         textView.setText(text);
         return this;
     }
 
-    //设置ImageView的图片(resource)
+    // 设置TextView的值
+    public BaseViewHolder setTextVisibility(int viewId, int visibility) {
+        TextView textView = getView(viewId);
+        textView.setVisibility(visibility);
+        return this;
+    }
+
+    // 设置ImageView的图片(resource)
     public BaseViewHolder setImageResource(int viewId, int resId) {
         ImageView imageView = getView(viewId);
         imageView.setImageResource(resId);
         return this;
     }
 
-    //设置ImageView的图片(bitmap)
+    // 设置ImageView的图片(bitmap)
     public BaseViewHolder setImageBitmap(int viewId, Bitmap bitmap) {
         ImageView imageView = getView(viewId);
         imageView.setImageBitmap(bitmap);
@@ -58,7 +66,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     }
 
 
-    //设置ImageView的图片(drawable)
+    // 设置ImageView的图片(drawable)
     public BaseViewHolder setImageDrawable(int viewId, Drawable drawable) {
         ImageView imageView = getView(viewId);
         imageView.setImageDrawable(drawable);

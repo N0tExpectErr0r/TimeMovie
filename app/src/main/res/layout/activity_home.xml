@@ -13,4 +13,19 @@
         app:leftIcon="@drawable/ic_city"
         app:backButton="false"
         app:title="@string/app_name"/>
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/home_tl_tab"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        app:tl_indicator_color="@color/colorPrimary"
+        app:tl_indicator_gravity="BOTTOM"
+        app:tl_indicator_height="2dp"
+        app:tl_textSelectColor="@color/tab_select_color"
+        app:tl_textUnselectColor="@color/tab_unselect_color">
+    </com.flyco.tablayout.CommonTabLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/home_vp_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 </LinearLayout>
