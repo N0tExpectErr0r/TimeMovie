@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.hjq.bar.TitleBar
+        android:id="@+id/location_tb_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="选择城市" />
+    <EditText
+        android:id="@+id/location_et_search"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#FFFFFF"
+        android:paddingLeft="10dp"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="10dp"
+        android:hint="搜索城市"
+        android:textColor="#212121"
+        android:textSize="14sp"/>
+    <cn.n0texpecterr0r.timemovie.widget.SideBarLayout
+        android:id="@+id/location_sbl_sidebar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/location_srl_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/location_rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </cn.n0texpecterr0r.timemovie.widget.SideBarLayout>
+</LinearLayout>
