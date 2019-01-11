@@ -6,6 +6,7 @@ import java.util.List;
 
 import cn.n0texpecterr0r.timemovie.base.component.mvp.BaseContract;
 import cn.n0texpecterr0r.timemovie.saling.bean.SalingMovie;
+import cn.n0texpecterr0r.timemovie.saling.repo.LocalSalingRepo;
 import cn.n0texpecterr0r.timemovie.saling.repo.RemoteSalingRepo;
 
 /**
@@ -22,10 +23,10 @@ public interface SalingContract {
         void onLoadError();
     }
 
-    abstract class Presenter extends BaseContract.BaseRepoPresenter<SalingContract.View, RemoteSalingRepo> {
+    abstract class Presenter extends BaseContract.RepoPresenter<SalingContract.View, RemoteSalingRepo, LocalSalingRepo> {
 
-        public Presenter(Context context, SalingContract.View view, RemoteSalingRepo remote) {
-            super(context, view, remote);
+        public Presenter(Context context, SalingContract.View view, RemoteSalingRepo remote, LocalSalingRepo local) {
+            super(context, view, remote, local);
         }
 
         public abstract void fetchSalingMovies(int locationId);

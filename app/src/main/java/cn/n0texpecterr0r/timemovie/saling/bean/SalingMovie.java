@@ -2,12 +2,17 @@ package cn.n0texpecterr0r.timemovie.saling.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Generated;
+
 /**
  * 上映中电影
  *
  * @author N0tExpectErr0r
  * @time 2019/01/10
  */
+@Entity
 public class SalingMovie {
 
     /**
@@ -65,7 +70,7 @@ public class SalingMovie {
     private String filmLong;
     @SerializedName("dN")
     private String director;
-    private int id;
+    private Long id;
     private String img;
     private boolean is3D;
     private boolean isDMAX;
@@ -86,6 +91,43 @@ public class SalingMovie {
     @SerializedName("tEn")
     private String nameEn;
     private int wantedCount;
+    private int locationId;
+
+    @Generated(hash = 1824995337)
+    public SalingMovie(String actor1, String actor2, String actors, int cinemaCount, String description, String filmLong,
+            String director, Long id, String img, boolean is3D, boolean isDMAX, boolean isHasTrailer, boolean isHot, boolean isIMAX,
+            boolean isIMAX3D, boolean isNew, boolean isTicket, int movieId, String movieType, double score, String date,
+            String nameCn, String nameEn, int wantedCount, int locationId) {
+        this.actor1 = actor1;
+        this.actor2 = actor2;
+        this.actors = actors;
+        this.cinemaCount = cinemaCount;
+        this.description = description;
+        this.filmLong = filmLong;
+        this.director = director;
+        this.id = id;
+        this.img = img;
+        this.is3D = is3D;
+        this.isDMAX = isDMAX;
+        this.isHasTrailer = isHasTrailer;
+        this.isHot = isHot;
+        this.isIMAX = isIMAX;
+        this.isIMAX3D = isIMAX3D;
+        this.isNew = isNew;
+        this.isTicket = isTicket;
+        this.movieId = movieId;
+        this.movieType = movieType;
+        this.score = score;
+        this.date = date;
+        this.nameCn = nameCn;
+        this.nameEn = nameEn;
+        this.wantedCount = wantedCount;
+        this.locationId = locationId;
+    }
+
+    @Generated(hash = 238595158)
+    public SalingMovie() {
+    }
 
     public String getActor1() {
         return actor1;
@@ -143,11 +185,11 @@ public class SalingMovie {
         this.director = director;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -277,5 +319,77 @@ public class SalingMovie {
 
     public void setWantedCount(int wantedCount) {
         this.wantedCount = wantedCount;
+    }
+
+    public int getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
+    }
+
+    public boolean getIs3D() {
+        return this.is3D;
+    }
+
+    public void setIs3D(boolean is3D) {
+        this.is3D = is3D;
+    }
+
+    public boolean getIsDMAX() {
+        return this.isDMAX;
+    }
+
+    public void setIsDMAX(boolean isDMAX) {
+        this.isDMAX = isDMAX;
+    }
+
+    public boolean getIsHasTrailer() {
+        return this.isHasTrailer;
+    }
+
+    public void setIsHasTrailer(boolean isHasTrailer) {
+        this.isHasTrailer = isHasTrailer;
+    }
+
+    public boolean getIsHot() {
+        return this.isHot;
+    }
+
+    public void setIsHot(boolean isHot) {
+        this.isHot = isHot;
+    }
+
+    public boolean getIsIMAX() {
+        return this.isIMAX;
+    }
+
+    public void setIsIMAX(boolean isIMAX) {
+        this.isIMAX = isIMAX;
+    }
+
+    public boolean getIsIMAX3D() {
+        return this.isIMAX3D;
+    }
+
+    public void setIsIMAX3D(boolean isIMAX3D) {
+        this.isIMAX3D = isIMAX3D;
+    }
+
+    public boolean getIsNew() {
+        return this.isNew;
+    }
+
+    public void setIsNew(boolean isNew) {
+        this.isNew = isNew;
+    }
+
+    public boolean getIsTicket() {
+        return this.isTicket;
+    }
+
+    public void setIsTicket(boolean isTicket) {
+        this.isTicket = isTicket;
     }
 }

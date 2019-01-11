@@ -23,6 +23,7 @@ import cn.n0texpecterr0r.timemovie.saling.SalingContract;
 import cn.n0texpecterr0r.timemovie.saling.adapter.SalingAdapter;
 import cn.n0texpecterr0r.timemovie.saling.bean.SalingMovie;
 import cn.n0texpecterr0r.timemovie.saling.presenter.SalingPresenter;
+import cn.n0texpecterr0r.timemovie.saling.repo.LocalSalingRepo;
 import cn.n0texpecterr0r.timemovie.saling.repo.RemoteSalingRepo;
 
 /**
@@ -64,7 +65,7 @@ public class SalingFragment extends TimeMvpFragment<SalingPresenter> implements 
 
     @Override
     protected SalingPresenter onCreatePresenter() {
-        return new SalingPresenter(getContext(), this, new RemoteSalingRepo());
+        return new SalingPresenter(getContext(), this, new RemoteSalingRepo(), new LocalSalingRepo());
     }
 
     @Override
@@ -81,6 +82,7 @@ public class SalingFragment extends TimeMvpFragment<SalingPresenter> implements 
     @Override
     public void onLoadError() {
         showToast("网络出现错误，请检查网络设置");
+        mSrlRefresh.setRefreshing(false);
     }
 
     @Subscribe

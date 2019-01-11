@@ -9,6 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
 import cn.n0texpecterr0r.timemovie.AppConstants;
+import cn.n0texpecterr0r.timemovie.TimeApplication;
 import cn.n0texpecterr0r.timemovie.base.component.mvp.BaseContract;
 import cn.n0texpecterr0r.timemovie.base.util.JsonUtil;
 import cn.n0texpecterr0r.timemovie.location.bean.Location;
@@ -23,7 +24,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * 售票中Repository
+ * 网络正在热映Repo
  *
  * @author N0tExpectErr0r
  * @time 2019/01/10
@@ -40,8 +41,6 @@ public class RemoteSalingRepo implements BaseContract.Repository {
                 Request request = new Request.Builder()
                         .get()
                         .url(url)
-                        //.addHeader("Host", AppConstants.HOST)
-                        //.addHeader("User-Agent", AppConstants.USER_AGENT)
                         .build();
                 Call call = client.newCall(request);
                 emitter.onNext(call.execute());
@@ -51,9 +50,17 @@ public class RemoteSalingRepo implements BaseContract.Repository {
             public List<SalingMovie> apply(Response response) throws Exception {
                 String json = response.body().string();
                 String realJson = JsonUtil.getNodeString(json, "ms");
-                List<SalingMovie> locations = new Gson().fromJson(realJson, new TypeToken<List<SalingMovie>>(){}.getType());
-                return locations;
+                List<SalingMovie> movies = new Gson().fromJson(realJson, new TypeToken<List<SalingMovie>>(){}.getType());
+                saveMoviesToLocal(movies, locationId);
+                return movies;
             }
         });
+    }
+
+    private void saveMoviesToLocal(List<SalingMovie> movies, int locationId) {
+        for (SalingMovie movie : movies) {
+            movie.setLocationId(locationId);
+            TimeApplication.getDaoSession().insert(movie);
+        }
     }
 }

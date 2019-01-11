@@ -44,34 +44,45 @@ public class SalingAdapter extends BaseAdapter<SalingMovie> {
                     .placeholder(R.drawable.base_img_loading)
                     .error(R.drawable.base_img_loading)
                     .into(imageView);
-        }else{
+        } else {
             imageView.setImageResource(R.drawable.base_img_loading);
         }
 
         holder.setText(R.id.saling_tv_name, movie.getNameCn());
-        if (movie.getScore()>0)
-            holder.setText(R.id.saling_tv_score, "评分："+ movie.getScore());
-        else
-            holder.setText(R.id.saling_tv_score, "评分：暂无");
-        holder.setText(R.id.saling_tv_director, "导演："+ movie.getDirector());
-        holder.setText(R.id.saling_tv_actors, "主演："+movie.getActors());
 
-        int visibility = movie.isHot()?View.VISIBLE:View.GONE;
+        if (movie.getScore() > 0) {
+            holder.setTextVisibility(R.id.saling_tv_score, View.VISIBLE);
+            holder.setText(R.id.saling_tv_score, movie.getScore() + "分");
+        }else {
+            holder.setTextVisibility(R.id.saling_tv_score, View.GONE);
+        }
+
+        if (!movie.getDescription().isEmpty()) {
+            holder.setTextVisibility(R.id.saling_tv_desc, View.VISIBLE);
+            holder.setText(R.id.saling_tv_desc, movie.getDescription());
+        }else {
+            holder.setTextVisibility(R.id.saling_tv_desc, View.GONE);
+        }
+
+        holder.setText(R.id.saling_tv_director, "导演：" + movie.getDirector());
+        holder.setText(R.id.saling_tv_actors, "主演：" + movie.getActors());
+
+        int visibility = movie.isHot() ? View.VISIBLE : View.GONE;
         holder.setTextVisibility(R.id.saling_tv_hot, visibility);
 
-        visibility = movie.is3D()?View.VISIBLE:View.GONE;
+        visibility = movie.is3D() ? View.VISIBLE : View.GONE;
         holder.setTextVisibility(R.id.saling_tv_3d, visibility);
 
-        visibility = movie.isDMAX()?View.VISIBLE:View.GONE;
+        visibility = movie.isDMAX() ? View.VISIBLE : View.GONE;
         holder.setTextVisibility(R.id.saling_tv_dmax, visibility);
 
-        visibility = movie.isHasTrailer()?View.VISIBLE:View.GONE;
+        visibility = movie.isHasTrailer() ? View.VISIBLE : View.GONE;
         holder.setTextVisibility(R.id.saling_tv_trailer, visibility);
 
-        visibility = movie.isIMAX()?View.VISIBLE:View.GONE;
+        visibility = movie.isIMAX() ? View.VISIBLE : View.GONE;
         holder.setTextVisibility(R.id.saling_tv_imax, visibility);
 
-        visibility = movie.isIMAX3D()?View.VISIBLE:View.GONE;
+        visibility = movie.isIMAX3D() ? View.VISIBLE : View.GONE;
         holder.setTextVisibility(R.id.saling_tv_imax3d, visibility);
     }
 }
