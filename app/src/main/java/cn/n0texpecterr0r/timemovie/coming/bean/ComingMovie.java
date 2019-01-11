@@ -2,7 +2,10 @@ package cn.n0texpecterr0r.timemovie.coming.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.greenrobot.greendao.annotation.Entity;
+
 import java.util.List;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * 即将上映Movie
@@ -10,6 +13,7 @@ import java.util.List;
  * @author N0tExpectErr0r
  * @time 2019/01/11
  */
+@Entity
 public class ComingMovie {
 
     /**
@@ -47,7 +51,28 @@ public class ComingMovie {
     private String type;
     private int videoCount;
     private int wantedCount;
-    private List<VideosBean> videos;
+    private int locationId;
+
+    @Generated(hash = 94901343)
+    public ComingMovie(String actor1, String actor2, String director, int id, String img, boolean isVideo, String locationName, String releaseDate, String name, String type, int videoCount, int wantedCount, int locationId) {
+        this.actor1 = actor1;
+        this.actor2 = actor2;
+        this.director = director;
+        this.id = id;
+        this.img = img;
+        this.isVideo = isVideo;
+        this.locationName = locationName;
+        this.releaseDate = releaseDate;
+        this.name = name;
+        this.type = type;
+        this.videoCount = videoCount;
+        this.wantedCount = wantedCount;
+        this.locationId = locationId;
+    }
+
+    @Generated(hash = 297813870)
+    public ComingMovie() {
+    }
 
     public String getActor1() {
         return actor1;
@@ -89,11 +114,11 @@ public class ComingMovie {
         this.img = img;
     }
 
-    public boolean isIsVideo() {
+    public boolean isVideo() {
         return isVideo;
     }
 
-    public void setIsVideo(boolean isVideo) {
+    public void setVideo(boolean isVideo) {
         this.isVideo = isVideo;
     }
 
@@ -145,77 +170,19 @@ public class ComingMovie {
         this.wantedCount = wantedCount;
     }
 
-    public List<VideosBean> getVideos() {
-        return videos;
+    public boolean getIsVideo() {
+        return this.isVideo;
     }
 
-    public void setVideos(List<VideosBean> videos) {
-        this.videos = videos;
+    public int getLocationId() {
+        return locationId;
     }
 
-    public static class VideosBean {
-        /**
-         * hightUrl :
-         * image : http://img5.mtime.cn/mg/2017/12/19/081113.68130060.jpg
-         * length : 84
-         * title : 掠食城市：致命引擎 中文预告片
-         * url : http://vfx.mtime.cn/Video/2017/12/19/mp4/171219080949591626.mp4
-         * videoId : 68912
-         */
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
+    }
 
-        private String hightUrl;
-        private String image;
-        private int length;
-        private String title;
-        private String url;
-        private int videoId;
-
-        public String getHightUrl() {
-            return hightUrl;
-        }
-
-        public void setHightUrl(String hightUrl) {
-            this.hightUrl = hightUrl;
-        }
-
-        public String getImage() {
-            return image;
-        }
-
-        public void setImage(String image) {
-            this.image = image;
-        }
-
-        public int getLength() {
-            return length;
-        }
-
-        public void setLength(int length) {
-            this.length = length;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public int getVideoId() {
-            return videoId;
-        }
-
-        public void setVideoId(int videoId) {
-            this.videoId = videoId;
-        }
+    public void setIsVideo(boolean isVideo) {
+        this.isVideo = isVideo;
     }
 }

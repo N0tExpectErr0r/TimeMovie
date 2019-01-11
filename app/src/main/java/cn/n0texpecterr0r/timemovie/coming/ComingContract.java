@@ -6,6 +6,7 @@ import java.util.List;
 
 import cn.n0texpecterr0r.timemovie.base.component.mvp.BaseContract;
 import cn.n0texpecterr0r.timemovie.coming.bean.ComingMovie;
+import cn.n0texpecterr0r.timemovie.coming.repo.LocalComingRepo;
 import cn.n0texpecterr0r.timemovie.coming.repo.RemoteComingRepo;
 
 /**
@@ -22,10 +23,11 @@ public interface ComingContract {
         void onLoadError();
     }
 
-    abstract class Presenter extends BaseContract.BaseRepoPresenter<ComingContract.View, RemoteComingRepo> {
+    abstract class Presenter extends BaseContract.RepoPresenter<ComingContract.View, RemoteComingRepo, LocalComingRepo> {
 
-        public Presenter(Context context, ComingContract.View view, RemoteComingRepo remote) {
-            super(context, view, remote);
+        public Presenter(Context context, ComingContract.View view,
+                         RemoteComingRepo remote, LocalComingRepo local) {
+            super(context, view, remote, local);
         }
 
         public abstract void fetchComingMovies(int locationId);

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.flyco.tablayout.CommonTabLayout;
@@ -25,6 +26,7 @@ import cn.n0texpecterr0r.timemovie.base.adapter.CommonPagerAdapter;
 import cn.n0texpecterr0r.timemovie.base.bean.CommonTabBean;
 import cn.n0texpecterr0r.timemovie.base.bus.EventBuser;
 import cn.n0texpecterr0r.timemovie.base.component.activity.BaseActivity;
+import cn.n0texpecterr0r.timemovie.coming.view.ComingFragment;
 import cn.n0texpecterr0r.timemovie.event.LocationChangeEvent;
 import cn.n0texpecterr0r.timemovie.location.bean.Location;
 import cn.n0texpecterr0r.timemovie.location.manager.LocationManager;
@@ -75,6 +77,7 @@ public class HomeActivity extends BaseActivity {
     private List<Fragment> getFragmentList() {
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new SalingFragment());
+        fragments.add(new ComingFragment());
         return fragments;
     }
 
@@ -89,7 +92,6 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 mTlTab.setCurrentTab(position);
-                this.onPageSelected(position);
             }
 
             @Override

@@ -4,13 +4,11 @@ import android.content.Context;
 
 import java.util.List;
 
-import cn.n0texpecterr0r.timemovie.location.bean.Location;
 import cn.n0texpecterr0r.timemovie.saling.SalingContract;
 import cn.n0texpecterr0r.timemovie.saling.bean.SalingMovie;
 import cn.n0texpecterr0r.timemovie.saling.repo.LocalSalingRepo;
 import cn.n0texpecterr0r.timemovie.saling.repo.RemoteSalingRepo;
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 

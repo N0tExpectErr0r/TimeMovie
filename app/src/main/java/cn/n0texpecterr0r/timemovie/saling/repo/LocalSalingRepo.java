@@ -28,6 +28,7 @@ public class LocalSalingRepo implements BaseContract.Repository {
                         .queryBuilder(SalingMovie.class)
                         .where(SalingMovieDao.Properties.LocationId.eq(locationId))
                         .list();
+                Log.d("Cache","本地缓存:"+locationId+" "+movieList.size());
                 emitter.onNext(movieList);
                 emitter.onComplete();
             }

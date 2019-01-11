@@ -12,6 +12,9 @@ import cn.n0texpecterr0r.timemovie.AppConstants;
 import cn.n0texpecterr0r.timemovie.TimeApplication;
 import cn.n0texpecterr0r.timemovie.base.component.mvp.BaseContract;
 import cn.n0texpecterr0r.timemovie.base.util.JsonUtil;
+import cn.n0texpecterr0r.timemovie.coming.bean.ComingMovie;
+import cn.n0texpecterr0r.timemovie.db.ComingMovieDao;
+import cn.n0texpecterr0r.timemovie.db.SalingMovieDao;
 import cn.n0texpecterr0r.timemovie.location.bean.Location;
 import cn.n0texpecterr0r.timemovie.saling.bean.SalingMovie;
 import io.reactivex.Observable;
@@ -52,12 +55,19 @@ public class RemoteSalingRepo implements BaseContract.Repository {
                 String realJson = JsonUtil.getNodeString(json, "ms");
                 List<SalingMovie> movies = new Gson().fromJson(realJson, new TypeToken<List<SalingMovie>>(){}.getType());
                 saveMoviesToLocal(movies, locationId);
+                Log.d("Cache","网络数据:"+locationId+" "+movies.size());
                 return movies;
             }
         });
     }
 
     private void saveMoviesToLocal(List<SalingMovie> movies, int locationId) {
+        // 清空上一次的记录
+        TimeApplication.getDaoSession()
+                .queryBuilder(SalingMovie.class)
+                .where(SalingMovieDao.Properties.LocationId.eq(locationId))
+                .buildDelete()
+                .executeDeleteWithoutDetachingEntities();
         for (SalingMovie movie : movies) {
             movie.setLocationId(locationId);
             TimeApplication.getDaoSession().insert(movie);
