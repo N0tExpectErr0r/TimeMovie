@@ -29,6 +29,7 @@ public class ComingAdapter extends BaseAdapter<ComingMovie> {
         String imgUrl = movie.getImg();
         if (imgUrl != null) {
             ImageLoader.with(TimeApplication.getContext())
+                    .resize(400,225)
                     .load(imgUrl)
                     .placeholder(R.drawable.base_img_loading)
                     .error(R.drawable.base_img_loading)

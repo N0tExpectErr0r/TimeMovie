@@ -78,8 +78,8 @@ public class ComingFragment extends TimeMvpFragment<ComingPresenter> implements 
 
     @Subscribe
     public void onLocationChanged(LocationChangeEvent event){
+        mSrlRefresh.setRefreshing(true);
         mLocation = LocationManager.getInstance().getLocation();
         getPresenter().fetchComingMovies(mLocation.getId().intValue());
-        mSrlRefresh.setRefreshing(true);
     }
 }

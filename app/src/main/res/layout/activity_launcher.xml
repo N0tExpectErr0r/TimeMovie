@@ -3,16 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/launcher_tv_skip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:textSize="14sp"
-        android:padding="20dp"
-        android:textStyle="bold"
-        android:text="跳过"/>
-
     <ImageView
         android:layout_width="72dp"
         android:layout_height="72dp"

@@ -1,21 +1,14 @@
 package cn.n0texpecterr0r.timemovie.saling.repo;
 
-import android.graphics.Movie;
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-import cn.n0texpecterr0r.timemovie.AppConstants;
 import cn.n0texpecterr0r.timemovie.TimeApplication;
 import cn.n0texpecterr0r.timemovie.base.component.mvp.BaseContract;
 import cn.n0texpecterr0r.timemovie.base.util.JsonUtil;
-import cn.n0texpecterr0r.timemovie.coming.bean.ComingMovie;
-import cn.n0texpecterr0r.timemovie.db.ComingMovieDao;
 import cn.n0texpecterr0r.timemovie.db.SalingMovieDao;
-import cn.n0texpecterr0r.timemovie.location.bean.Location;
 import cn.n0texpecterr0r.timemovie.saling.bean.SalingMovie;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -55,7 +48,6 @@ public class RemoteSalingRepo implements BaseContract.Repository {
                 String realJson = JsonUtil.getNodeString(json, "ms");
                 List<SalingMovie> movies = new Gson().fromJson(realJson, new TypeToken<List<SalingMovie>>(){}.getType());
                 saveMoviesToLocal(movies, locationId);
-                Log.d("Cache","网络数据:"+locationId+" "+movies.size());
                 return movies;
             }
         });

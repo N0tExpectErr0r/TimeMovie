@@ -41,6 +41,7 @@ public class SalingAdapter extends BaseAdapter<SalingMovie> {
         if (imgUrl != null) {
             ImageLoader.with(TimeApplication.getContext())
                     .load(imgUrl)
+                    .resize(400,225)
                     .placeholder(R.drawable.base_img_loading)
                     .error(R.drawable.base_img_loading)
                     .into(imageView);

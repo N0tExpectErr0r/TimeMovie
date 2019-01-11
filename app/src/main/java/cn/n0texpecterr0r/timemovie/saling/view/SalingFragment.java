@@ -87,8 +87,8 @@ public class SalingFragment extends TimeMvpFragment<SalingPresenter> implements 
 
     @Subscribe
     public void onLocationChanged(LocationChangeEvent event){
+        mSrlRefresh.setRefreshing(true);
         mLocation = LocationManager.getInstance().getLocation();
         getPresenter().fetchSalingMovies(mLocation.getId().intValue());
-        mSrlRefresh.setRefreshing(true);
     }
 }

@@ -21,19 +21,11 @@ import cn.n0texpecterr0r.timemovie.location.view.LocationActivity;
 import static cn.n0texpecterr0r.timemovie.location.manager.LocationManager.SP_LOCATION;
 
 public class LauncherActivity extends TimeBaseActivity {
-    private TextView mTvSkip;
     private Timer mTimer;
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        mTvSkip = findViewById(R.id.launcher_tv_skip);
-
-        mTimer = new Timer().startTimer(1000, this::navigateActivity);
-
-        mTvSkip.setOnClickListener((view)->{
-            mTimer.cancelAll();
-            navigateActivity();
-        });
+        mTimer = new Timer().startTimer(500, this::navigateActivity);
     }
 
     private void navigateActivity() {
