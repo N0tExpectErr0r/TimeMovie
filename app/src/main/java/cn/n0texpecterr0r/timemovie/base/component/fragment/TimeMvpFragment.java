@@ -17,9 +17,12 @@ public abstract class TimeMvpFragment<P extends BaseContract.Presenter> extends 
     protected P mPresenter;
     private Lifecycle mLifecycle;
 
+    public TimeMvpFragment(){
+        mLifecycle = new LifecycleRegistry(this);
+    }
+
     @Override
     final protected void init(Bundle savedInstanceState) {
-        mLifecycle = new LifecycleRegistry(this);
         mPresenter = onCreatePresenter();
         init(mPresenter, savedInstanceState);
     }

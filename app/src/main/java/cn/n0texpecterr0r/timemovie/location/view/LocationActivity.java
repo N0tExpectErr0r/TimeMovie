@@ -2,6 +2,7 @@ package cn.n0texpecterr0r.timemovie.location.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -144,7 +146,7 @@ public class LocationActivity extends TimeMvpActivity<LocationPresenter>
 
     @Override
     public void onLoadError() {
-        showToast("网络出现错误，请检查网络设置");
+        //showToast("网络出现错误，请检查网络设置");
         mSrlRefresh.setRefreshing(false);
     }
 
