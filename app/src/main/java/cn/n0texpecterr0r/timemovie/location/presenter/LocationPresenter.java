@@ -22,7 +22,8 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class LocationPresenter extends LocationContract.Presenter {
 
-    public LocationPresenter(Context context, LocationContract.View view, RemoteLocationRepo remote, LocalLocationRepo local) {
+    public LocationPresenter(Context context, LocationContract.View view,
+                             RemoteLocationRepo remote, LocalLocationRepo local) {
         super(context, view, remote,local);
     }
 

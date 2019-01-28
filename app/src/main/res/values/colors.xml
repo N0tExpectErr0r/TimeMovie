@@ -7,4 +7,5 @@
     <color name="tab_select_color">#0AC282</color>
     <color name="tab_unselect_color">#848484</color>
     <color name="tab_background">#F0F0F0</color>
+    <color name="colorRed">#E86255</color>
 </resources>

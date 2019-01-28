@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".location.view.LocationActivity" />
-        <activity android:name=".home.HomeActivity"></activity>
+        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".detail.view.DetailActivity"></activity>
     </application>
 
 </manifest>

@@ -29,26 +29,20 @@ public class RemoteLocationRepo implements BaseContract.Repository {
     public static final String LOCATION_LIST_URL = "https://api-m.mtime.cn/Showtime/HotCitiesByCinema.api";
 
     public Observable<List<Location>> fetchLocations(){
-        return Observable.create(new ObservableOnSubscribe<Response>() {
-            @Override
-            public void subscribe(ObservableEmitter<Response> emitter) throws Exception {
-                OkHttpClient client = new OkHttpClient();
-                Request request = new Request.Builder()
-                        .get()
-                        .url(LOCATION_LIST_URL)
-                        .build();
-                Call call = client.newCall(request);
-                emitter.onNext(call.execute());
-            }
-        }).map(new Function<Response, List<Location>>() {
-            @Override
-            public List<Location> apply(Response response) throws Exception {
-                String json = response.body().string();
-                String realJson = JsonUtil.getNodeString(json, "p");
-                List<Location> locations = new Gson().fromJson(realJson, new TypeToken<List<Location>>(){}.getType());
-                saveLocationToLocal(locations);
-                return locations;
-            }
+        return Observable.create((ObservableOnSubscribe<Response>) emitter -> {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .get()
+                    .url(LOCATION_LIST_URL)
+                    .build();
+            Call call = client.newCall(request);
+            emitter.onNext(call.execute());
+        }).map(response -> {
+            String json = response.body().string();
+            String realJson = JsonUtil.getNodeString(json, "p");
+            List<Location> locations = new Gson().fromJson(realJson, new TypeToken<List<Location>>(){}.getType());
+            saveLocationToLocal(locations);
+            return locations;
         });
     }
 

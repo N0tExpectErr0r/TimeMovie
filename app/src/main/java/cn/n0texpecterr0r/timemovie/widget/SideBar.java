@@ -49,9 +49,10 @@ public class SideBar extends View {
         if (showBackground) {
             canvas.drawColor(Color.parseColor("#EEEEEE"));
         }
-        int height = getHeight();
+        if (mHeight == 0)
+            mHeight = getHeight();
         int width = getWidth();
-        int letterHeight = height / letters.length;
+        int letterHeight = mHeight / letters.length;
         for (int i = 0; i < letters.length; i++) {
             mPaint.setColor(Color.BLACK);
             mPaint.setAntiAlias(true);
@@ -71,7 +72,7 @@ public class SideBar extends View {
     public boolean dispatchTouchEvent(MotionEvent event) {
         float y = event.getY();
         int lastIndex = mCurrentIndex;
-        int index = (int) (y / getHeight() * letters.length);
+        int index = (int) (y / mHeight * letters.length);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 showBackground = true;
