@@ -20,9 +20,11 @@ import cn.n0texpecterr0r.timemovie.coming.bean.ComingMovie;
 import cn.n0texpecterr0r.timemovie.coming.presenter.ComingPresenter;
 import cn.n0texpecterr0r.timemovie.coming.repo.LocalComingRepo;
 import cn.n0texpecterr0r.timemovie.coming.repo.RemoteComingRepo;
+import cn.n0texpecterr0r.timemovie.detail.view.DetailActivity;
 import cn.n0texpecterr0r.timemovie.event.LocationChangeEvent;
 import cn.n0texpecterr0r.timemovie.location.bean.Location;
 import cn.n0texpecterr0r.timemovie.location.manager.LocationManager;
+import cn.n0texpecterr0r.timemovie.saling.bean.SalingMovie;
 
 /**
  * 即将上映Fragment
@@ -47,6 +49,10 @@ public class ComingFragment extends TimeMvpFragment<ComingPresenter> implements 
                 false, false);
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvList.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener((view, position) -> {
+            ComingMovie movie = mAdapter.getDataAt(position);
+            DetailActivity.actionStart(getContext(), movie.getId());
+        });
 
         mLocation = LocationManager.getInstance().getLocation();
         presenter.fetchComingMovies(mLocation.getId().intValue());

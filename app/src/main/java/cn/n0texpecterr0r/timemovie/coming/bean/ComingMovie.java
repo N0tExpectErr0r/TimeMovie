@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.Entity;
 
 import java.util.List;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Keep;
 
 /**
  * 即将上映Movie
@@ -40,7 +41,7 @@ public class ComingMovie {
     private String actor1;
     private String actor2;
     private String director;
-    private int id;
+    private Long id;
     @SerializedName("image")
     private String img;
     private boolean isVideo;
@@ -53,8 +54,8 @@ public class ComingMovie {
     private int wantedCount;
     private int locationId;
 
-    @Generated(hash = 94901343)
-    public ComingMovie(String actor1, String actor2, String director, int id, String img, boolean isVideo, String locationName, String releaseDate, String name, String type, int videoCount, int wantedCount, int locationId) {
+    @Keep
+    public ComingMovie(String actor1, String actor2, String director, Long id, String img, boolean isVideo, String locationName, String releaseDate, String name, String type, int videoCount, int wantedCount, int locationId) {
         this.actor1 = actor1;
         this.actor2 = actor2;
         this.director = director;
@@ -98,11 +99,11 @@ public class ComingMovie {
         this.director = director;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -27,7 +27,7 @@ public class ComingMovieDao extends AbstractDao<ComingMovie, Void> {
         public final static Property Actor1 = new Property(0, String.class, "actor1", false, "ACTOR1");
         public final static Property Actor2 = new Property(1, String.class, "actor2", false, "ACTOR2");
         public final static Property Director = new Property(2, String.class, "director", false, "DIRECTOR");
-        public final static Property Id = new Property(3, int.class, "id", false, "ID");
+        public final static Property Id = new Property(3, Long.class, "id", false, "ID");
         public final static Property Img = new Property(4, String.class, "img", false, "IMG");
         public final static Property IsVideo = new Property(5, boolean.class, "isVideo", false, "IS_VIDEO");
         public final static Property LocationName = new Property(6, String.class, "locationName", false, "LOCATION_NAME");
@@ -55,7 +55,7 @@ public class ComingMovieDao extends AbstractDao<ComingMovie, Void> {
                 "\"ACTOR1\" TEXT," + // 0: actor1
                 "\"ACTOR2\" TEXT," + // 1: actor2
                 "\"DIRECTOR\" TEXT," + // 2: director
-                "\"ID\" INTEGER NOT NULL ," + // 3: id
+                "\"ID\" INTEGER," + // 3: id
                 "\"IMG\" TEXT," + // 4: img
                 "\"IS_VIDEO\" INTEGER NOT NULL ," + // 5: isVideo
                 "\"LOCATION_NAME\" TEXT," + // 6: locationName
@@ -91,7 +91,11 @@ public class ComingMovieDao extends AbstractDao<ComingMovie, Void> {
         if (director != null) {
             stmt.bindString(3, director);
         }
-        stmt.bindLong(4, entity.getId());
+ 
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(4, id);
+        }
  
         String img = entity.getImg();
         if (img != null) {
@@ -141,7 +145,11 @@ public class ComingMovieDao extends AbstractDao<ComingMovie, Void> {
         if (director != null) {
             stmt.bindString(3, director);
         }
-        stmt.bindLong(4, entity.getId());
+ 
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(4, id);
+        }
  
         String img = entity.getImg();
         if (img != null) {
@@ -184,7 +192,7 @@ public class ComingMovieDao extends AbstractDao<ComingMovie, Void> {
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // actor1
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // actor2
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // director
-            cursor.getInt(offset + 3), // id
+            cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3), // id
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // img
             cursor.getShort(offset + 5) != 0, // isVideo
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // locationName
@@ -203,7 +211,7 @@ public class ComingMovieDao extends AbstractDao<ComingMovie, Void> {
         entity.setActor1(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
         entity.setActor2(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setDirector(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setId(cursor.getInt(offset + 3));
+        entity.setId(cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3));
         entity.setImg(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setIsVideo(cursor.getShort(offset + 5) != 0);
         entity.setLocationName(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));

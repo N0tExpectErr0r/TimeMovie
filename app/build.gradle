@@ -24,7 +24,7 @@ android {
 }
 
 greendao {
-    schemaVersion 4
+    schemaVersion 5
     daoPackage 'cn.n0texpecterr0r.timemovie.db'
     targetGenDir 'src/main/java'
 }

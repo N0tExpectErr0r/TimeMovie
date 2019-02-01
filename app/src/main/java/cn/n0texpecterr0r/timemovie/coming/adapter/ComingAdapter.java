@@ -23,6 +23,10 @@ public class ComingAdapter extends BaseAdapter<ComingMovie> {
         super(data, itemLayoutId, hasBanner, canLoadMore);
     }
 
+    public ComingMovie getDataAt(int pos){
+        return mDatas.get(pos);
+    }
+
     @Override
     public void initItemView(BaseViewHolder holder, ComingMovie movie) {
         ImageView imageView = holder.getView(R.id.coming_iv_img);
