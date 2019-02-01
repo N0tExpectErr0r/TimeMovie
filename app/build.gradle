@@ -56,6 +56,8 @@ dependencies {
     implementation "com.flyco.tablayout:FlycoTabLayout_Lib:${FLYCO_TAB_VERSION}@aar"
     // TitleBar
     implementation "com.hjq:titlebar:${TITLE_BAR_VERSION}"
+    // Blur
+    implementation 'com.github.pinguo-zhouwei:EasyBlur:v1.0.0'
 
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'

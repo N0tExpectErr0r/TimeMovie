@@ -33,6 +33,10 @@ public class SalingAdapter extends BaseAdapter<SalingMovie> {
         super(data, itemLayoutId, hasBanner, canLoadMore);
     }
 
+    public SalingMovie getDataAt(int pos){
+        return mDatas.get(pos);
+    }
+
     @Override
     public void initItemView(BaseViewHolder holder, SalingMovie movie) {
 

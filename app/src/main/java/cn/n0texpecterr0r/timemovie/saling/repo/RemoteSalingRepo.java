@@ -28,7 +28,7 @@ import okhttp3.Response;
 public class RemoteSalingRepo implements BaseContract.Repository {
     public static final String SALING_MOVIE_URL = "https://api-m.mtime.cn/Showtime/LocationMovies.api";
 
-    public Observable<List<SalingMovie>> fetchSalingMovies(int locationId){
+        public Observable<List<SalingMovie>> fetchSalingMovies(int locationId){
         String url = SALING_MOVIE_URL +"?locationId="+locationId;
         return Observable.create(new ObservableOnSubscribe<Response>() {
             @Override
@@ -60,6 +60,7 @@ public class RemoteSalingRepo implements BaseContract.Repository {
                 .where(SalingMovieDao.Properties.LocationId.eq(locationId))
                 .buildDelete()
                 .executeDeleteWithoutDetachingEntities();
+        // 保存新记录
         for (SalingMovie movie : movies) {
             movie.setLocationId(locationId);
             TimeApplication.getDaoSession().insert(movie);

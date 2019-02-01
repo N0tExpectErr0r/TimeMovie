@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -13,9 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.n0texpecterr0r.timemovie.R;
+import cn.n0texpecterr0r.timemovie.base.adapter.BaseAdapter;
 import cn.n0texpecterr0r.timemovie.base.bus.EventBuser;
 import cn.n0texpecterr0r.timemovie.base.component.fragment.TimeMvpFragment;
 import cn.n0texpecterr0r.timemovie.base.component.mvp.BaseContract;
+import cn.n0texpecterr0r.timemovie.detail.view.DetailActivity;
 import cn.n0texpecterr0r.timemovie.event.LocationChangeEvent;
 import cn.n0texpecterr0r.timemovie.location.bean.Location;
 import cn.n0texpecterr0r.timemovie.location.manager.LocationManager;
@@ -49,6 +52,10 @@ public class SalingFragment extends TimeMvpFragment<SalingPresenter> implements 
                 false, false);
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvList.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener((view, position) -> {
+            SalingMovie movie = mAdapter.getDataAt(position);
+            DetailActivity.actionStart(getContext(), movie.getId());
+        });
 
         mLocation = LocationManager.getInstance().getLocation();
         presenter.fetchSalingMovies(mLocation.getId().intValue());

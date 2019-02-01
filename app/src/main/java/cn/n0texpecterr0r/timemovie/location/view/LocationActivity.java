@@ -146,7 +146,7 @@ public class LocationActivity extends TimeMvpActivity<LocationPresenter>
 
     @Override
     public void onLoadError() {
-        //showToast("网络出现错误，请检查网络设置");
+        showToast("网络出现错误，请检查网络设置");
         mSrlRefresh.setRefreshing(false);
     }
 

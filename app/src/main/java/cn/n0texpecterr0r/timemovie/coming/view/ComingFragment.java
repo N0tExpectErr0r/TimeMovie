@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -78,6 +79,7 @@ public class ComingFragment extends TimeMvpFragment<ComingPresenter> implements 
 
     @Subscribe
     public void onLocationChanged(LocationChangeEvent event){
+        Log.d("ComingFragment", "location Changed!");
         mSrlRefresh.setRefreshing(true);
         mLocation = LocationManager.getInstance().getLocation();
         getPresenter().fetchComingMovies(mLocation.getId().intValue());
