@@ -41,7 +41,7 @@ public class RemoteLocationRepo implements BaseContract.Repository {
             String json = response.body().string();
             String realJson = JsonUtil.getNodeString(json, "p");
             List<Location> locations = new Gson().fromJson(realJson, new TypeToken<List<Location>>(){}.getType());
-            // saveLocationToLocal(locations);
+            saveLocationToLocal(locations);
             return locations;
         });
     }

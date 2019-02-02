@@ -1,5 +1,7 @@
 package cn.n0texpecterr0r.timemovie.location.repo;
 
+import android.util.Log;
+
 import java.util.List;
 
 import cn.n0texpecterr0r.timemovie.TimeApplication;
